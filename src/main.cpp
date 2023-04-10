@@ -232,6 +232,9 @@ void setup() {
      // route definie par notre serveur pour la lecture de notre variable definie pour afficher notr page web
     server.on("/", HTTP_GET, [](AsyncWebServerRequest *request)
               { request->send_P(200, "text/html", index_html); });
+               // Implementation de notre javascript pour communiquer avec notre page et notre objet pour la lecture des donnees
+    server.on("/Js/stock.js", HTTP_GET, [](AsyncWebServerRequest *request)
+              { request->send(200, "application/javascript", Js_sam); });
   
 }
 
