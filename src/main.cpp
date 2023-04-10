@@ -228,6 +228,10 @@ void setup() {
         while (1)
             ;
     }
+
+     // route definie par notre serveur pour la lecture de notre variable definie pour afficher notr page web
+    server.on("/", HTTP_GET, [](AsyncWebServerRequest *request)
+              { request->send_P(200, "text/html", index_html); });
   
 }
 
