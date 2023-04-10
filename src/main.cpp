@@ -28,7 +28,7 @@ const char *password = "Cottage2018";
 
 
 Adafruit_BME280 bme;                   // initialisation du capteur BME280
-
+AsyncWebServer server(80); // initialisation de notre serveur au port 8
 
 // Concatenation de texte page notre page HTML
 const char index_html[] PROGMEM = R"=====(
