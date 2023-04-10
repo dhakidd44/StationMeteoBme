@@ -186,6 +186,24 @@ const char index_html[] PROGMEM = R"=====(
     </body>
 </html>
     )=====";
+
+ // Concatenation de javascript
+const char Js_sam[] PROGMEM = R"=====(
+    setInterval(function () {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var objBme = JSON.parse(this.responseText);
+                document.getElementById("temperature").innerHTML = objBme.Temperature;
+                document.getElementById("humidity").innerHTML = objBme.Humidity;
+                document.getElementById("pression").innerHTML = objBme.Pression;
+                document.getElementById("altitude").innerHTML = objBme.Altitude;
+            }
+        };
+        xhttp.open("GET", "/data", true);
+        xhttp.send();
+    }, 3000);
+)=====";   
 void setup() {
 
    Serial.begin(115200); // Initialisation de notre moniteur serie
