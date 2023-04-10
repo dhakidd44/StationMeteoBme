@@ -20,8 +20,38 @@
 #include <AsyncTCP.h>
 #include <ESPAsyncWebServer.h>
 
+#define SEALEVELPRESSURE_HPA (1013.25) // Niveau de la mer en hPa
 
+// Connection a notre reseau Local
+const char *ssid = "Cottage";
+const char *password = "Cottage2018";
+
+
+Adafruit_BME280 bme;                   // initialisation du capteur BME280
 void setup() {
+
+   Serial.begin(115200); // Initialisation de notre moniteur serie
+    delay(100);
+    bme.begin(0x76); // Initalisation de notre capteur
+    Serial.println();
+    Serial.println();
+    Serial.print("Connecting to ");
+     Serial.println(ssid); // Affichage du nom de reseau
+   WiFi.begin(ssid, password); // connection a notre wifi local
+    // attente de connection a notre reseau
+    while (WiFi.status() != WL_CONNECTED)
+    {
+        delay(1000);
+        Serial.print(".");
+    }
+
+     // initialisation du capteur BME280
+    if (!bme.begin(0x76))
+    {
+        Serial.println("Erreur lors de l'initialisation du capteur BME280");
+        while (1)
+            ;
+    }
   
 }
 
