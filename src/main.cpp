@@ -235,6 +235,18 @@ void setup() {
                // Implementation de notre javascript pour communiquer avec notre page et notre objet pour la lecture des donnees
     server.on("/Js/stock.js", HTTP_GET, [](AsyncWebServerRequest *request)
               { request->send(200, "application/javascript", Js_sam); });
+
+           // creation d'une autre maniere pour stocker nos valeurs dans le json
+
+    server.on("/data", HTTP_GET, [](AsyncWebServerRequest *request)
+              {
+  String json = "{";
+  json += "\"Temperature\": " + String(bme.readTemperature())+ ",";
+  json += "\"Humidity\": " + String(bme.readHumidity())+ ",";
+  json += "\"Pression\": " + String(bme.readPressure() / 100.0F)+ ",";
+  json += "\"Altitude\": " + String(bme.readAltitude(SEALEVELPRESSURE_HPA));
+  json += "}";
+  request->send(200, "application/json", json); });     
   
 }
 
