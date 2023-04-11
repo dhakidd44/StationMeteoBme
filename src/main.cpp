@@ -74,7 +74,7 @@ const char index_html[] PROGMEM = R"=====(
         .h1 {
             border-radius: 10px;
             border-color: black;
-            background-color: rgb(131, 164, 230);
+            background-color: rgb(255, 164, 230);
 
         }
 
