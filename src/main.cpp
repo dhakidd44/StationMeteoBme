@@ -19,6 +19,7 @@
 #include <Adafruit_BME280.h>
 #include <AsyncTCP.h>
 #include <ESPAsyncWebServer.h>
+#include <AsyncElegantOTA.h>
 
 #define SEALEVELPRESSURE_HPA (1013.25) // Niveau de la mer en hPa
 
@@ -246,10 +247,15 @@ void setup() {
   json += "\"Pression\": " + String(bme.readPressure() / 100.0F)+ ",";
   json += "\"Altitude\": " + String(bme.readAltitude(SEALEVELPRESSURE_HPA));
   json += "}";
-  request->send(200, "application/json", json); });     
+  request->send(200, "application/json", json); });   
+
+      // ajout de la fonctionnalite OTA dans notre projet pour la mise a jour a distance
+    AsyncElegantOTA.begin(&server);
+    server.begin();
+    Serial.println("HTTP server started");  
   
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  // rien dans notre loop.
 }
