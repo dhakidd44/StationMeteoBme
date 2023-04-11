@@ -115,7 +115,7 @@ const char index_html[] PROGMEM = R"=====(
 
         <div class="row1 border3">
             <div class="container head1">
-                <h1 class="h1">ESP8266 WEATHER STATION</h1>
+                <h1 class="h1">ESP32 WEATHER STATION</h1>
 
             </div>
             <hr>
