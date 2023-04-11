@@ -228,6 +228,10 @@ void setup() {
         while (1)
             ;
     }
+   // Imprimer l'adresse IP
+    Serial.print("IP address: ");
+    Serial.println(WiFi.localIP());
+    server.begin();
 
      // route definie par notre serveur pour la lecture de notre variable definie pour afficher notr page web
     server.on("/", HTTP_GET, [](AsyncWebServerRequest *request)
